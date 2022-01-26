@@ -1,2 +1,2 @@
 # manuscripts
-code for publications
+This is a list of typically R code used in my publications
