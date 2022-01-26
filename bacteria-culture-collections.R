@@ -260,4 +260,4 @@ ggsave(file='ICMP-deposit-dates-kiwifruit.png', width=8, height=5)
 sort(table(ICMP.kiwifruit.df$date.deposited),decreasing=TRUE)[1:200] #top 20 species
 
 
-
+test
