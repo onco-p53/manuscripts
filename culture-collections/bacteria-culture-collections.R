@@ -227,7 +227,7 @@ ggplot(combined.pathogens.df, aes(date.deposited, fill = Collection)) +
   scale_x_date(date_breaks = "10 years", date_labels = "%Y", limits = c(as.Date("1935-01-01"), NA)) +
   geom_histogram(binwidth=365.25, show.legend = FALSE) + 
   facet_grid(Collection ~ . , scales = "free")
-ggsave(file='./combined4-filtered-pathogens.png', width=8, height=7)
+ggsave(file='./culture-collections/combined4-filtered-pathogens.png', width=8, height=7)
 
 
 #+ scale_x_date(limits = c(as.Date("2006-1-1"), end))
@@ -254,10 +254,7 @@ ggplot(ICMP.kiwifruit.df, aes(date.deposited, fill = Country)) +
   geom_histogram(binwidth=365.25) +
   scale_x_date(date_breaks = "10 years", date_labels = "%Y") +
   scale_fill_brewer(palette = "Set2")
-ggsave(file='ICMP-deposit-dates-kiwifruit.png', width=8, height=5)
+ggsave(file='./culture-collections/ICMP-deposit-dates-kiwifruit.png', width=8, height=5)
 
 #sorting
 sort(table(ICMP.kiwifruit.df$date.deposited),decreasing=TRUE)[1:200] #top 20 species
-
-
-test
