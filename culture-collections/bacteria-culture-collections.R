@@ -237,25 +237,18 @@ ggplot(ICMP.kiwifruit.df, aes(date.deposited, fill = Country)) +
   geom_histogram(binwidth=365.25) +
   scale_x_date(date_breaks = "10 years", date_labels = "%Y") +
   scale_fill_brewer(palette = "Set2")
-ggsave(file='./culture-collections/ICMP-deposit-dates-kiwifruit.png', width=8, height=5)
+ggsave(file='./ICMP-deposit-dates-kiwifruit-old.png', width=8, height=5)
 
 #sorting deposit dates to find the gap
 sort(table(ICMP.kiwifruit.df$date.deposited),decreasing=TRUE)[1:50] #top 50 deposit dates
 
 
+#graphics - the histogram of deposit dates over time with annotations
 
-
-
-
-
-
+#read in a file of dates
 outbreak.df <- read_csv("outbreak.csv", col_types = cols(start = col_date(format = "%d/%m/%Y"), 
                                                       end = col_date(format = "%d/%m/%Y")))
 head(outbreak.df)
-
-
-
-
 
 #graphics - the histogram of deposit dates over time
 ggplot(ICMP.kiwifruit.df) +
@@ -263,20 +256,20 @@ ggplot(ICMP.kiwifruit.df) +
   labs(x = "Date of deposit", y =  "Number of cultures") +
   theme_bw() +
   theme(legend.position = "none") +
-  geom_histogram(aes(date.deposited), binwidth=365.25) +
-  scale_x_date(date_breaks = "10 years", date_labels = "%Y") +
+  scale_x_date(date_breaks = "5 years", date_labels = "%Y") +
   scale_fill_brewer(palette = "Set2") +
   geom_rect(
     aes(xmin = start, xmax = end, fill = factor(label)), 
-    ymin = -Inf, ymax = Inf, alpha = 0.3, 
+    ymin = -Inf, ymax = Inf, alpha = 0.25, 
     data = outbreak.df
   ) +
   geom_text(
     aes(x = start, y = 50, label = label), 
     data = outbreak.df, 
     size = 5, vjust = 0, hjust = 0, nudge_x = 0
-  )
-ggsave(file='./culture-collections/ICMP-deposit-dates-kiwifruit2.png', width=8, height=5)
+  ) +
+  geom_histogram(aes(date.deposited), binwidth=365.25)
+ggsave(file='./culture-collections/ICMP-deposit-dates-kiwifruit.png', width=8, height=5)
 
 
 
