@@ -31,21 +31,17 @@ NRRL.df <- read_csv("nrrl.csv", col_types = cols(date_accessioned = col_date(for
 NRRL.df %>% 
   glimpse
 
-
 #NRRL all
 NRRL.all.df <- read_csv("nrrl.all.csv", col_types = cols(date_accessioned = col_date(format = "%d/%m/%Y")))
 
 NRRL.all.df %>% 
   glimpse
 
-
-
 #---- DAR ----#
 
 DAR.df <- read.csv("dar.csv", header=TRUE, sep=",")
 DAR.df %>% 
   glimpse
-
 
 #---- CFBP ----#
 
@@ -54,8 +50,6 @@ CFBP.df %>%
   glimpse
 
 #============Calculate dates and Normalise column names================
-
-#ICMP.df$date.deposited <- ymd(ICMP.df$DepositedDateISO, truncated = 3)
 
 ICMP.df <- ICMP.df %>%
   mutate(date.deposited = ymd(DepositedDateISO, truncated = 3) )
@@ -70,7 +64,6 @@ NRRL.all.df <- NRRL.all.df %>%
   rename(CurrentName = current_name) %>%
   rename(Country = country)
 
-#DAR.df$date.deposited <- ymd(DAR.df$Date, truncated = 3)
 DAR.df <- DAR.df %>%
   mutate(date.deposited = ymd(Date, truncated = 3) ) %>%
   rename(CurrentName = Species)
@@ -121,7 +114,7 @@ sort(table(CFBP.df$CurrentName),decreasing=TRUE)[1:30]
 
 #============compute if else================
 
-#host country true false?
+#useful to have host country true / false?
 
 
 #============Combining the data================
@@ -146,9 +139,7 @@ tail(combined.df)
 
 #============filtering================
 
-#could filter or mutate into a pathgens column
-
-#still need to verify that dates work
+#filter plant pathogenic bacteria genera and select species
 
 combined.pathogens.df <- combined.df %>% 
   filter(str_detect(CurrentName, "^Pseudomonas") |
@@ -181,10 +172,6 @@ combined.pathogens.df <- combined.df %>%
            str_detect(CurrentName, "^Xylophilus ampelinus") |
            str_detect(CurrentName, "^Xylella")) %>%
   glimpse()
-
-
-
-
 
 #============Graphics================
 
@@ -230,10 +217,6 @@ ggplot(combined.pathogens.df, aes(date.deposited, fill = Collection)) +
 ggsave(file='./culture-collections/combined4-filtered-pathogens.png', width=8, height=7)
 
 
-#+ scale_x_date(limits = c(as.Date("2006-1-1"), end))
-#, limits = c(as.Date("2006-1-1"), end)
-
-
 #============ Pseudomonas syringae pv. actinidiae case study ================
 
 #subset kiwifruit bacteria
@@ -256,5 +239,5 @@ ggplot(ICMP.kiwifruit.df, aes(date.deposited, fill = Country)) +
   scale_fill_brewer(palette = "Set2")
 ggsave(file='./culture-collections/ICMP-deposit-dates-kiwifruit.png', width=8, height=5)
 
-#sorting
-sort(table(ICMP.kiwifruit.df$date.deposited),decreasing=TRUE)[1:200] #top 20 species
+#sorting depost dates to find the gap
+sort(table(ICMP.kiwifruit.df$date.deposited),decreasing=TRUE)[1:50] #top 50 deposit dates
