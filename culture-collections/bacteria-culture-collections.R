@@ -145,7 +145,7 @@ combined.pathogens.df <- combined.df %>%
   filter(str_detect(CurrentName, "^Pseudomonas") |
            str_detect(CurrentName, "^Xanthomonas") |
            str_detect(CurrentName, "^Pectobacterium") |
-           str_detect(CurrentName, "^Acidovorax a") |
+           str_detect(CurrentName, "^Acidovorax") |
            str_detect(CurrentName, "^Agrobacterium tumefaciens") |
            str_detect(CurrentName, "^Agrobacterium larrymoorei") |
            str_detect(CurrentName, "^Agrobacterium rhizogenes") |
@@ -168,7 +168,8 @@ combined.pathogens.df <- combined.df %>%
            str_detect(CurrentName, "^Ralstonia") |
            str_detect(CurrentName, "^Rathayibacter") |
            str_detect(CurrentName, "^Streptomyces ipomoea") |
-           str_detect(CurrentName, "^Streptomyces scabiei") |
+           str_detect(CurrentName, "^Streptomyces scab") |
+           str_detect(CurrentName, "^Streptomyces acid") |
            str_detect(CurrentName, "^Xylophilus ampelinus") |
            str_detect(CurrentName, "^Xylella")) %>%
   glimpse()
