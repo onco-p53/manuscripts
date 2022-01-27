@@ -1,7 +1,7 @@
 ## R Script to process bacterial collection data
 # Author: B.S. Weir (2022)
 
-#============Load all the packages ================
+#============ Load all library packages needed ================
 
 library(tidyverse)
 library(ggplot2)
@@ -11,7 +11,7 @@ library(svglite)
 library(lubridate)
 library(readr)
 
-#============Load data================
+#============ Load data from csv files ================
 
 #---- ICMP ----#
 ICMP.initial.df <- read.csv("icmp.csv", header=TRUE, sep=",")
@@ -49,7 +49,7 @@ CFBP.df <- read.csv("cfbp.csv", header=TRUE, sep=",")
 CFBP.df %>% 
   glimpse
 
-#============Calculate dates and Normalise column names================
+#============ Calculate dates and Normalise column names ================
 
 ICMP.df <- ICMP.df %>%
   mutate(date.deposited = ymd(DepositedDateISO, truncated = 3) )
@@ -74,7 +74,7 @@ CFBP.df <- CFBP.df %>%
   rename(Country = Geographic_origin__Country)
 
 
-#============Data checking================
+#============ Checking that dates are sensible ================
 
 #all cultures sorted by deposited date
 arrange(ICMP.df, date.deposited) %>%
@@ -102,7 +102,7 @@ arrange(CFBP.df, date.deposited) %>%
   slice_head(n=10)
 
 
-#============Top species================
+#============ List top species per collection ================
 
 #top 30 species
 sort(table(ICMP.df$CurrentName),decreasing=TRUE)[1:30] 
@@ -112,12 +112,12 @@ sort(table(DAR.df$CurrentName),decreasing=TRUE)[1:30]
 sort(table(CFBP.df$CurrentName),decreasing=TRUE)[1:30] 
 
 
-#============compute if else================
+#============ Compute if else================
 
 #useful to have host country true / false?
 
 
-#============Combining the data================
+#============ Combining the data from each collection ================
 
 #Add a ICMP / NRRL column
 ICMP.df$Collection <- "ICMP"
@@ -137,7 +137,7 @@ head(combined.df)
 tail(combined.df)
 
 
-#============filtering================
+#============ Filtering pathogens ================
 
 #filter plant pathogenic bacteria genera and select species
 
@@ -173,7 +173,7 @@ combined.pathogens.df <- combined.df %>%
            str_detect(CurrentName, "^Xylella")) %>%
   glimpse()
 
-#============Graphics================
+#============ Graphics ================
 
 #Deposit dates faceted all data binned by year
 ggplot(combined.df, aes(date.deposited, fill = Collection)) +
@@ -226,9 +226,8 @@ ICMP.kiwifruit.df <- ICMP.df %>%
   filter(str_detect(TaxonName_C2, "^Actinidia")) %>%
   filter(Country == "New Zealand") %>%
   glimpse()
-    
 
-#graphics
+#graphics - the histogram of deposit dates over time
 ggplot(ICMP.kiwifruit.df, aes(date.deposited, fill = Country)) +
   labs(title = "Deposits of Pseudomonas ex kiwifruit in New Zealand into the ICMP culture collection") +
   labs(x = "Date of deposit", y =  "Number of cultures" , fill = "") +
@@ -239,5 +238,5 @@ ggplot(ICMP.kiwifruit.df, aes(date.deposited, fill = Country)) +
   scale_fill_brewer(palette = "Set2")
 ggsave(file='./culture-collections/ICMP-deposit-dates-kiwifruit.png', width=8, height=5)
 
-#sorting depost dates to find the gap
+#sorting deposit dates to find the gap
 sort(table(ICMP.kiwifruit.df$date.deposited),decreasing=TRUE)[1:50] #top 50 deposit dates
