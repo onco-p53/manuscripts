@@ -210,6 +210,7 @@ ggsave(file='./combined-deposits3-pathogens.png', width=8, height=6)
 ggplot(combined.pathogens.df, aes(date.deposited, fill = Collection)) +
   labs(title = "Deposit dates of plant pathogenic bacterial cultures") +
   labs(x = "Date of deposit", y =  "Number of cultures per year" , fill = "") +
+  theme_bw() +
   scale_fill_brewer(palette = "Set2") +
   scale_x_date(date_breaks = "10 years", date_labels = "%Y", limits = c(as.Date("1935-01-01"), NA)) +
   geom_histogram(binwidth=365.25, show.legend = FALSE) + 
@@ -240,3 +241,44 @@ ggsave(file='./culture-collections/ICMP-deposit-dates-kiwifruit.png', width=8, h
 
 #sorting deposit dates to find the gap
 sort(table(ICMP.kiwifruit.df$date.deposited),decreasing=TRUE)[1:50] #top 50 deposit dates
+
+
+
+
+
+
+
+
+outbreak.df <- read_csv("outbreak.csv", col_types = cols(start = col_date(format = "%d/%m/%Y"), 
+                                                      end = col_date(format = "%d/%m/%Y")))
+head(outbreak.df)
+
+
+
+
+
+#graphics - the histogram of deposit dates over time
+ggplot(ICMP.kiwifruit.df) +
+  labs(title = "Deposits of Pseudomonas ex kiwifruit in New Zealand into the ICMP culture collection") +
+  labs(x = "Date of deposit", y =  "Number of cultures") +
+  theme_bw() +
+  theme(legend.position = "none") +
+  geom_histogram(aes(date.deposited), binwidth=365.25) +
+  scale_x_date(date_breaks = "10 years", date_labels = "%Y") +
+  scale_fill_brewer(palette = "Set2") +
+  geom_rect(
+    aes(xmin = start, xmax = end, fill = factor(label)), 
+    ymin = -Inf, ymax = Inf, alpha = 0.3, 
+    data = outbreak.df
+  ) +
+  geom_text(
+    aes(x = start, y = 50, label = label), 
+    data = outbreak.df, 
+    size = 5, vjust = 0, hjust = 0, nudge_x = 0
+  )
+ggsave(file='./culture-collections/ICMP-deposit-dates-kiwifruit2.png', width=8, height=5)
+
+
+
+
+
