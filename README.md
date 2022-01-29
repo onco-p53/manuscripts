@@ -4,7 +4,7 @@ This is a list of typically R code or sequence data used in my publications. The
 ## Culture-collections ##
 This code is for a manuscript published as... [In prep]
 
-## Colletotrichum-riograndense ##
+## colletotrichum_2012 ##
 R code and from the paper: Weir B.S., Johnston, P.R. and U. Damm (2012) The Colletotrichum gloeosporioides species complex. Studies in Mycology 73: 115–180. https://dx.doi.org/10.3114/sim0011
 
 ## Colletotrichum-riograndense ##
