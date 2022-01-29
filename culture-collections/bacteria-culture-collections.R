@@ -124,6 +124,11 @@ ICMP.df$Collection <- "ICMP"
 NRRL.df$Collection <- "NRRL"
 NRRL.all.df$Collection <- "NRRL"
 DAR.df$Collection <- "DAR"
+CFBP.df$Collection <- "CIRM-CFBP"
+
+
+
+CIRM-CFBP
 
 #stack them using bind_rows()
 
