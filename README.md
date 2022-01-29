@@ -1,5 +1,5 @@
 # Manuscripts code
-This is a list of typically R code or sequence data used in my publications. The subfolder are for individual publications...
+This is a list of typically R code or sequence data used in my publications. The subfolders are for individual publications as below...
 
 ## Culture-collections ##
 This code is for a manuscript published as... [In prep]
