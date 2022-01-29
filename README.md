@@ -1,7 +1,7 @@
 # Manuscripts code
 This is a list of typically R code or sequence data used in my publications. The subfolders are for individual publications as below...
 
-## Culture-collections ##
+## culture-collections ##
 This code is for a manuscript published as... [In prep]
 
 ## colletotrichum_2012 ##
