@@ -1,0 +1,106 @@
+#NEXUS
+[written Thu Oct 08 22:59:01 NZDT 2015 by Mesquite  version 3.04 (build 725) at Vampire/192.168.178.26]
+BEGIN TREES;
+	Title 'Trees from "brazil.colle.tree"';
+	LINK Taxa = Taxa;
+	TRANSLATE
+[0] 		1 Colletotrichum_graminicola_CBS_130836,
+[1] 		2 Colletotrichum_riograndense_ICMP_20083,
+[2] 		3 Colletotrichum_hsienjenchang_MAFF_243051,
+[3] 		4 Colletotrichum_bletillum_CGMCC_3.15117,
+[4] 		5 Colletotrichum_verruculosum_IMI_45525,
+[5] 		6 Colletotrichum_liriopes_CBS_119444,
+[6] 		7 Colletotrichum_tofieldiae_CBS_495.85,
+[7] 		8 Colletotrichum_incanum_NRRL_62592,
+[8] 		9 Colletotrichum_guizhouensis_CGMCC_3.15112,
+[9] 		10 Colletotrichum_lilii_CBS_109214,
+[10] 		11 Colletotrichum_spaethianum_CBS_167.49;
+	TREE consensus = (1:0.122433,((2:0.075387,(4:0.020674,((5:0.018281,7:0.008936):0.001156,6:0.009944):0.006576):0.012756):0.005236,8:0.023442):0.010377,(3:0.046969,(9:0.023502,(10:0.009399,11:0.008137):0.001947):0.032006):0.012021);
+
+END;
+
+
+begin figtree;
+	set appearance.backgroundColorAttribute = " Default ";
+	set appearance.backgroundColour = #ffffff;
+	set appearance.branchColorAttribute = " User selection ";
+	set appearance.branchColorGradient = false;
+	set appearance.branchLineWidth = 3.0;
+	set appearance.branchMinLineWidth = 0.0;
+	set appearance.branchWidthAttribute = " Fixed ";
+	set appearance.foregroundColour = #000000;
+	set appearance.hilightingGradient = false;
+	set appearance.selectionColour = #2d3680;
+	set branchLabels.colorAttribute = " User selection ";
+	set branchLabels.displayAttribute = " Branch times ";
+	set branchLabels.fontName = " sansserif ";
+	set branchLabels.fontSize = 8;
+	set branchLabels.fontStyle = 0;
+	set branchLabels.isShown = false;
+	set branchLabels.significantDigits = 4;
+	set layout.expansion = 0;
+	set layout.layoutType = " RECTILINEAR ";
+	set layout.zoom = 0;
+	set legend.attribute = null;
+	set legend.fontSize = 10.0;
+	set legend.isShown = false;
+	set legend.significantDigits = 4;
+	set nodeBars.barWidth = 4.0;
+	set nodeBars.displayAttribute = null;
+	set nodeBars.isShown = false;
+	set nodeLabels.colorAttribute = " User selection ";
+	set nodeLabels.displayAttribute = " Posterior Probability ";
+	set nodeLabels.fontName = " sansserif ";
+	set nodeLabels.fontSize = 12;
+	set nodeLabels.fontStyle = 0;
+	set nodeLabels.isShown = true;
+	set nodeLabels.significantDigits = 2;
+	set nodeShape.colourAttribute = null;
+	set nodeShape.isShown = false;
+	set nodeShape.minSize = 10.0;
+	set nodeShape.scaleType = Width;
+	set nodeShape.shapeType = Circle;
+	set nodeShape.size = 4.0;
+	set nodeShape.sizeAttribute = null;
+	set polarLayout.alignTipLabels = false;
+	set polarLayout.angularRange = 0;
+	set polarLayout.rootAngle = 0;
+	set polarLayout.rootLength = 100;
+	set polarLayout.showRoot = true;
+	set radialLayout.spread = 0.0;
+	set rectilinearLayout.alignTipLabels = false;
+	set rectilinearLayout.curvature = 0;
+	set rectilinearLayout.rootLength = 100;
+	set scale.offsetAge = 0.0;
+	set scale.rootAge = 1.0;
+	set scale.scaleFactor = 1.0;
+	set scale.scaleRoot = false;
+	set scaleAxis.automaticScale = true;
+	set scaleAxis.fontSize = 8.0;
+	set scaleAxis.isShown = false;
+	set scaleAxis.lineWidth = 1.0;
+	set scaleAxis.majorTicks = 1.0;
+	set scaleAxis.origin = 0.0;
+	set scaleAxis.reverseAxis = false;
+	set scaleAxis.showGrid = true;
+	set scaleBar.automaticScale = true;
+	set scaleBar.fontSize = 10.0;
+	set scaleBar.isShown = true;
+	set scaleBar.lineWidth = 1.0;
+	set scaleBar.scaleRange = 0.0;
+	set tipLabels.colorAttribute = " User selection ";
+	set tipLabels.displayAttribute = " Names ";
+	set tipLabels.fontName = " sansserif ";
+	set tipLabels.fontSize = 15;
+	set tipLabels.fontStyle = 0;
+	set tipLabels.isShown = true;
+	set tipLabels.significantDigits = 4;
+	set trees.order = true;
+	set trees.orderType = " increasing ";
+	set trees.rooting = true;
+	set trees.rootingType = " Midpoint ";
+	set trees.transform = false;
+	set trees.transformType = " cladogram ";
+
+END;
+
