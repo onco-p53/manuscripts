@@ -14,40 +14,34 @@ library(readr)
 #============ Load data from csv files ================
 
 #---- ICMP ----#
-ICMP.initial.df <- read.csv("icmp.csv", header=TRUE, sep=",")
-head(ICMP.initial.df)
-tail(ICMP.initial.df)
-summary(ICMP.initial.df, maxsum=10)
+ICMP.initial.df <- read_csv("icmp.csv")
+#head(ICMP.initial.df)
+#tail(ICMP.initial.df)
+#summary(ICMP.initial.df, maxsum=10)
 
-ICMP.df <- subset(ICMP.initial.df,(SpecimenType == "Bacterial Culture"))
-summary(ICMP.df, maxsum=40)
-
-ICMP.df %>% 
-  glimpse
+ICMP.df <- ICMP.initial.df %>%
+  filter(SpecimenType == "Bacterial Culture") %>%
+  glimpse()
 
 #----NRRL ----#
-NRRL.df <- read_csv("nrrl.csv", col_types = cols(date_accessioned = col_date(format = "%d/%m/%Y")))
-
-NRRL.df %>% 
-  glimpse
+NRRL.df <- read_csv("nrrl.csv", 
+                    col_types = cols(date_accessioned = col_date(format = "%d/%m/%Y"))) %>%
+  glimpse()
 
 #NRRL all
-NRRL.all.df <- read_csv("nrrl.all.csv", col_types = cols(date_accessioned = col_date(format = "%d/%m/%Y")))
-
-NRRL.all.df %>% 
-  glimpse
+NRRL.all.df <- read_csv("nrrl.all.csv", 
+                        col_types = cols(date_accessioned = col_date(format = "%d/%m/%Y"))) %>%
+  glimpse()
 
 #---- DAR ----#
 
-DAR.df <- read.csv("dar.csv", header=TRUE, sep=",")
-DAR.df %>% 
-  glimpse
+DAR.df <- read_csv("dar.csv") %>% 
+  glimpse()
 
 #---- CFBP ----#
 
-CFBP.df <- read.csv("cfbp.csv", header=TRUE, sep=",")
-CFBP.df %>% 
-  glimpse
+CFBP.df <- read_csv("cfbp.csv") %>% 
+  glimpse()
 
 #============ Calculate dates and Normalise column names ================
 
@@ -221,7 +215,7 @@ ggplot(combined.pathogens.df, aes(date.deposited, fill = Collection)) +
   scale_x_date(date_breaks = "10 years", date_labels = "%Y", limits = c(as.Date("1935-01-01"), NA)) +
   geom_histogram(binwidth=365.25, show.legend = FALSE) + 
   facet_grid(Collection ~ . , scales = "free")
-ggsave(file='./culture-collections/combined4-filtered-pathogens.png', width=8, height=7)
+ggsave(file='./combined4-filtered-pathogens.png', width=8, height=7)
 
 
 #============ Pseudomonas syringae pv. actinidiae case study ================
@@ -275,9 +269,6 @@ ggplot(ICMP.kiwifruit.df) +
     size = 5, vjust = 0, hjust = 0, nudge_x = 0
   ) +
   geom_histogram(aes(date.deposited), binwidth=365.25)
-ggsave(file='./culture-collections/ICMP-deposit-dates-kiwifruit.png', width=8, height=5)
-
-
-
+ggsave(file='./ICMP-deposit-dates-kiwifruit.png', width=8, height=5)
 
 
