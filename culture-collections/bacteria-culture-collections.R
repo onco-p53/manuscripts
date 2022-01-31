@@ -139,8 +139,19 @@ NCPPB.df$Collection <- "NCPPB"
 
 #stack them using bind_rows()
 
-combined.df <- bind_rows(ICMP.df, NRRL.all.df, DAR.df, CFBP.df, NCPPB.df, .id = "id")
-#combined.path.df <- bind_rows(ICMP.df, NRRL.df, DAR.df, .id = "id")
+combined.df <- bind_rows(ICMP.df, 
+                         NRRL.all.df, 
+                         DAR.df, 
+                         CFBP.df, 
+                         NCPPB.df, 
+                         .id = "id")
+
+combined.PPQ526.df <- bind_rows(ICMP.df, 
+                              NRRL.df, # no path filter other than using PPQ526 on NRRL only
+                              DAR.df, 
+                              CFBP.df, 
+                              NCPPB.df, 
+                              .id = "id")  
 
 combined.df %>% 
   glimpse
@@ -197,7 +208,7 @@ ggplot(combined.df, aes(date.deposited, fill = Collection)) +
   scale_x_date(date_breaks = "10 years", date_labels = "%Y") +
   geom_histogram(binwidth=365.25, show.legend = FALSE) + 
   facet_grid(Collection ~ . , scales = "free")
-ggsave(file='./combined-deposits4.png', width=8, height=6)
+ggsave(file='./combined-deposits5.png', width=8, height=6)
 
 #Deposit dates faceted all data binned by 2 years
 ggplot(combined.df, aes(date.deposited, fill = Collection)) +
@@ -207,17 +218,17 @@ ggplot(combined.df, aes(date.deposited, fill = Collection)) +
   scale_x_date(date_breaks = "10 years", date_labels = "%Y") +
   geom_histogram(binwidth=730.5, show.legend = FALSE) + 
   facet_grid(Collection ~ . , scales = "free")
-ggsave(file='./combined-deposits3-binned2.png', width=8, height=6)
+ggsave(file='./combined-deposits5-binned2.png', width=8, height=6)
 
-#Deposit dates faceted all data binned by year
-ggplot(combined.path.df, aes(date.deposited, fill = Collection)) +
-  labs(title = "Deposit dates of bacterial cultures - NRRL pathogens only") +
+#Deposit dates faceted all data binned by year PPQ25 for NRRL
+ggplot(combined.PPQ526.df, aes(date.deposited, fill = Collection)) +
+  labs(title = "Deposit dates of bacterial cultures - NRRL PPQ526 pathogens only") +
   labs(x = "Date of deposit", y =  "Number of cultures per year" , fill = "") +
   scale_fill_brewer(palette = "Set2") +
   scale_x_date(date_breaks = "10 years", date_labels = "%Y") +
   geom_histogram(binwidth=365.25, show.legend = FALSE) + 
   facet_grid(Collection ~ . , scales = "free")
-ggsave(file='./combined-deposits3-pathogens.png', width=8, height=6)
+ggsave(file='./combined-PPQ526-pathogens.png', width=8, height=6)
 
 
 #Deposit dates faceted all data binned by year
