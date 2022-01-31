@@ -43,6 +43,11 @@ DAR.df <- read_csv("dar.csv") %>%
 CFBP.df <- read_csv("cfbp.csv") %>% 
   glimpse()
 
+#---- NCPPB ----#
+
+NCPPB.df <- read_csv("ncppb.csv") %>% 
+  glimpse()
+
 #============ Calculate dates and Normalise column names ================
 
 ICMP.df <- ICMP.df %>%
@@ -66,6 +71,11 @@ CFBP.df <- CFBP.df %>%
   mutate(date.deposited = ymd(Deposit_date, truncated = 3) ) %>%
   rename(CurrentName = Taxonomy.CFBP_Taxonomy) %>%
   rename(Country = Geographic_origin__Country)
+
+NCPPB.df <- NCPPB.df %>%
+  mutate(date.deposited = ymd(year_added, truncated = 3) ) %>%
+  rename(CurrentName = org_name) %>%
+  rename(Country = country)
 
 
 #============ Checking that dates are sensible ================
@@ -95,6 +105,11 @@ arrange(CFBP.df, date.deposited) %>%
   select("Accession_number","CurrentName", "Country", "date.deposited") %>%
   slice_head(n=10)
 
+#all cultures sorted by deposited date
+arrange(NCPPB.df, date.deposited) %>%
+  select("ncppb_no","CurrentName", "Country", "date.deposited") %>%
+  slice_head(n=10)
+
 
 #============ List top species per collection ================
 
@@ -104,6 +119,7 @@ sort(table(NRRL.df$CurrentName),decreasing=TRUE)[1:30]
 sort(table(NRRL.all.df$CurrentName),decreasing=TRUE)[1:30] 
 sort(table(DAR.df$CurrentName),decreasing=TRUE)[1:30] 
 sort(table(CFBP.df$CurrentName),decreasing=TRUE)[1:30] 
+sort(table(NCPPB.df$CurrentName),decreasing=TRUE)[1:30] 
 
 
 #============ Compute if else================
@@ -126,7 +142,7 @@ CIRM-CFBP
 
 #stack them using bind_rows()
 
-combined.df <- bind_rows(ICMP.df, NRRL.all.df, DAR.df, CFBP.df, .id = "id")
+combined.df <- bind_rows(ICMP.df, NRRL.all.df, DAR.df, CFBP.df, NCPPB.df, .id = "id")
 #combined.path.df <- bind_rows(ICMP.df, NRRL.df, DAR.df, .id = "id")
 
 combined.df %>% 
@@ -156,6 +172,7 @@ combined.pathogens.df <- combined.df %>%
            str_detect(CurrentName, "^Rhizobium rhizogenes") |
            str_detect(CurrentName, "^Rhizobium rubi") |
            str_detect(CurrentName, "^Rhizobium vitis") |
+           str_detect(CurrentName, "^Robbsia") |
            str_detect(CurrentName, "^Burkholderia") |
            str_detect(CurrentName, "^Clavibacter") |
            str_detect(CurrentName, "^Curtobacterium") |
