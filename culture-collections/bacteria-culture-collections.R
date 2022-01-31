@@ -135,10 +135,7 @@ NRRL.df$Collection <- "NRRL"
 NRRL.all.df$Collection <- "NRRL"
 DAR.df$Collection <- "DAR"
 CFBP.df$Collection <- "CIRM-CFBP"
-
-
-
-CIRM-CFBP
+NCPPB.df$Collection <- "NCPPB"
 
 #stack them using bind_rows()
 
@@ -229,10 +226,12 @@ ggplot(combined.pathogens.df, aes(date.deposited, fill = Collection)) +
   labs(x = "Date of deposit", y =  "Number of cultures per year" , fill = "") +
   theme_bw() +
   scale_fill_brewer(palette = "Set2") +
-  scale_x_date(date_breaks = "10 years", date_labels = "%Y", limits = c(as.Date("1935-01-01"), NA)) +
+  scale_x_date(date_breaks = "10 years", 
+               date_labels = "%Y", 
+               limits = c(as.Date("1935-01-01"), NA)) + #remove dates before 1935
   geom_histogram(binwidth=365.25, show.legend = FALSE) + 
   facet_grid(Collection ~ . , scales = "free")
-ggsave(file='./combined4-filtered-pathogens.png', width=8, height=7)
+ggsave(file='./combined4-filtered-pathogens.png', width=8, height=8)
 
 
 #============ Pseudomonas syringae pv. actinidiae case study ================
