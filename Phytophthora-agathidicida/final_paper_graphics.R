@@ -300,7 +300,3 @@ ggsave(p.sporangia.pore, file='oospore.pore.pdf', width=10, height=7)
 
 
 
-#test edit to trigger commit2
-
-
-
