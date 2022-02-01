@@ -11,6 +11,11 @@ library(svglite)
 library(lubridate)
 library(readr)
 
+
+library(paletteer) 
+paletteer_d("colorblindr::OkabeIto")
+paletteer_d("RColorBrewer::Set2")
+
 #============ Load data from csv files ================
 
 #---- ICMP ----#
