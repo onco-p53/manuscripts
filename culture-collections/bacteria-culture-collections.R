@@ -238,7 +238,7 @@ ggsave(file='./combined-PPQ526-pathogens.png', width=8, height=6)
 
 #Deposit dates faceted all data binned by year
 ggplot(combined.pathogens.df, aes(date.deposited, fill = Collection)) +
-  labs(title = "Deposit dates of plant pathogenic bacterial cultures") +
+  #labs(title = "Deposit dates of plant pathogenic bacterial cultures") +
   labs(x = "Date of deposit", y =  "Number of cultures per year" , fill = "") +
   theme_bw() +
   scale_fill_brewer(palette = "Set2") +
@@ -284,7 +284,7 @@ head(outbreak.df)
 
 #graphics - the histogram of deposit dates over time
 ggplot(ICMP.kiwifruit.df) +
-  labs(title = "Deposits of Pseudomonas ex kiwifruit in New Zealand into the ICMP culture collection") +
+  #labs(title = "Deposits of Pseudomonas ex kiwifruit in New Zealand into the ICMP culture collection") +
   labs(x = "Date of deposit", y =  "Number of cultures") +
   theme_bw() +
   theme(legend.position = "none") +
