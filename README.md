@@ -2,7 +2,7 @@
 This is a list of typically R code, sequence data, and data visulisation images used in my publications. The subfolders are for individual publications as below...
 
 ## culture-collections ##
-R code for the paper:Broders K, Aspin A, Bailey J, Chapman T, Portier P, Weir BS. (2022) Building More Resilient Culture Collections: A Call for Increased Deposits of Plant-Associated Bacteria. Microorganisms. 10(4):741. https://doi.org/10.3390/microorganisms10040741
+R code for the paper: Broders K., Aspin A., Bailey J., Chapman T., Portier P., Weir B.S. (2022) Building More Resilient Culture Collections: A Call for Increased Deposits of Plant-Associated Bacteria. Microorganisms. 10(4):741. https://doi.org/10.3390/microorganisms10040741
 
 ## colletotrichum_2012 ##
 R code and from the paper: Weir B.S., Johnston, P.R. and U. Damm (2012) The Colletotrichum gloeosporioides species complex. Studies in Mycology 73: 115–180. https://dx.doi.org/10.3114/sim0011
