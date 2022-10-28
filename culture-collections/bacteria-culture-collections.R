@@ -56,7 +56,7 @@ NCPPB.df <- read_csv("ncppb.csv") %>%
 #============ Calculate dates and Normalise column names ================
 
 ICMP.df <- ICMP.df %>%
-  mutate(date.deposited = ymd(DepositedDateISO, truncated = 3) )
+  mutate(date.deposited = ymd(DepositedDateISO, truncated = 3) ) 
 
 NRRL.df <- NRRL.df %>%
   mutate(date.deposited = ymd(date_accessioned, truncated = 3) ) %>%
@@ -102,7 +102,7 @@ arrange(NRRL.all.df, date.deposited) %>%
 
 #all cultures sorted by deposited date
 arrange(DAR.df, date.deposited) %>%
-  select("Accesion.no.","CurrentName", "Country", "date.deposited") %>%
+  select("Accesion no.","CurrentName", "Country", "date.deposited") %>%
   slice_head(n=10)
 
 #all cultures sorted by deposited date
